@@ -37,13 +37,13 @@ def place_order(order_type, level):
         price = grid_price(level)
         try:
             balance_amount, balance_price = BLACKBOT.tradableBalance(PAIR)
-            if order_type == "buy" and balance_price >= (TRANCHE_SIZE * price / 10 ** float(PAIR.asset1.decimals)):
+            if order_type == "buy" and balance_price >= (TRANCHE_SIZE * price / 10 ** float(8)):
                 o = BLACKBOT.buy(PAIR, TRANCHE_SIZE, price, maxLifetime=ORDER_LIFETIME, matcherFee=ORDER_FEE)
             elif order_type == "sell" and balance_amount >= TRANCHE_SIZE:
                 price -= 1
                 o = BLACKBOT.sell(PAIR, TRANCHE_SIZE, price, maxLifetime=ORDER_LIFETIME, matcherFee=ORDER_FEE)
             id = o.orderId
-            log(">> [%03d] %s%-4s order  %18.*f%s" % (level, COLOR_GREEN if order_type == "buy" else COLOR_RED, order_type.upper(), PAIR.asset2.decimals, float(price) / 10 ** PAIR.asset2.decimals, COLOR_RESET))
+            log(">> [%03d] %s%-4s order  %18.*f%s" % (level, COLOR_GREEN if order_type == "buy" else COLOR_RED, order_type.upper(), PAIR.asset2.decimals, float(price) / 10 ** 8, COLOR_RESET))
         except:
             id = ""
         grid[level] = id
@@ -51,7 +51,7 @@ def place_order(order_type, level):
 
 def get_last_price():
     try:
-        last_trade_price = int(round(float(PAIR.trades(1)[0]['price']) * 10 ** PAIR.asset2.decimals))
+        last_trade_price = int(round(float(PAIR.trades(1)[0]['price']) * 10 ** 8))
     except:
         last_trade_price = 0
     return last_trade_price
@@ -148,7 +148,7 @@ if basePrice == 0:
     log("Exiting.")
     exit(1)
 
-log("Grid initialisation [base price : %.*f]" % (PAIR.asset2.decimals, float(basePrice) / 10 ** PAIR.asset2.decimals))
+log("Grid initialisation [base price : %.*f]" % (PAIR.asset2.decimals, float(basePrice) / 10 ** 8))
 
 last_level = int(GRID_LEVELS / 2)
 
