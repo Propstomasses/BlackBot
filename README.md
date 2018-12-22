@@ -37,7 +37,7 @@ order_fee = 300000
 order_lifetime = 86400
 
 [account]
-private_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+private_key = YourWalletPrivateKey
 
 [market]
 amount_asset = WAVES
@@ -49,7 +49,7 @@ tranche_size = 200000000
 grid_levels = 20
 base = last
 type = symmetric
- 
+
 [logging]
 logfile = bot.log
 ```
