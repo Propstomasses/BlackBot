@@ -37,7 +37,7 @@ order_fee = 300000
 order_lifetime = 86400
 
 [account]
-private_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+private_key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 
 [market]
 amount_asset = WAVES
